@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Crear cuenta</title>
+</head>
+<body>
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="w-100 p-4 bg-white border border-gray-200 rounded-lg shadow">
+            <div class="mb-4">
+                <h5 class="text-center font-weight-bold text-dark">Ingresa tus datos para registrarte en nuestra plataforma</h5>
+            </div>
+            <form id="signup">
+                <div class="form-group">
+                    <label for="email" class="font-weight-bold text-dark">Tu correo electrónico</label>
+                    <input id="email-signup" type="email" name="email" class="form-control" placeholder="nombre@compañia.com" required>
+                    
+                </div>                
+
+                <div class="form-group mt-4">
+                    <label for="password" class="font-weight-bold text-dark">Tu contraseña</label>
+                    <input id="password-signup" type="password" name="password" placeholder="••••••••" class="form-control" required>
+                    
+                </div>
+
+                <button id="create-acct-btn" class="btn btn-primary w-100 mt-4">Crear cuenta</button>
+
+                <div class="text-center mt-3">
+                    ¿Ya tienes una cuenta creada? <a href="/login.html" class="text-danger">Iniciar Sesión</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Scripts de JQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="module"> import {
+        initializeApp
+      } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+      import {createUserWithEmailAndPassword,
+        getAuth,
+        signInWithEmailAndPassword
+      } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+      
+      const firebaseConfig = {
+        apiKey: "AIzaSyC5FqTzj2l-OApnteH1yLCunKetRaKf61k",
+          authDomain: "login-soa.firebaseapp.com",
+          projectId: "login-soa",
+          storageBucket: "login-soa.appspot.com",
+          messagingSenderId: "746339217777",
+          appId: "1:746339217777:web:13ad22587641e104aac6d0"
+      };
+      
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      
+      $('#signup').submit(function(event) {
+        event.preventDefault();
+        var isVerified = true;
+      
+        var email = document.getElementById("email-signup").value;
+        var password = document.getElementById("password-signup").value;
+
+        console.log( email )
+        console.log( password )
+      
+            createUserWithEmailAndPassword(auth, email, password)
+                .then(() => {
+                    alert("¡Cuenta creada correctamente!");
+                })
+                .catch((error) => {
+                        alert(error);
+                });
+      });
+      
+       </script>
+</body>
+</html>
