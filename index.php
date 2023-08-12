@@ -7,7 +7,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
             echo json_encode(Carros::getWhere($_GET['id']));
         } //end if
         else {
-            echo json_encode(Carros::getAll());
+            //echo json_encode(Carros::getAll());
         } //end else
         break;
     case 'POST':
